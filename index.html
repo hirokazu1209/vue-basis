@@ -13,7 +13,10 @@
     <p>現在{{ number }}回クリックされています</p>
     <button v-on:click="countUp(2)">カウントアップ</button>
     <!-- eventに引数を持たせる場合は$eventを使用する。引数の場所は決まっていない -->
-    <p v-on:mousemove="changeMousePosition(3, $event)">マウスを載せてください</p>
+    <p v-on:mousemove="changeMousePosition(3, $event)">マウスを載せてください
+      <!-- <DOMイベント>.stop:stopはイベント修飾子。prevent.stopの様に繋げることができる -->
+      <span v-on:mousemove.stop>反応しないでください</span>
+    </p>
     <p>X:{{ x }}、Y:{{ y }}</p>
   </div>
   <script>
@@ -33,9 +36,17 @@
         changeMousePosition: function(divideNumber, event) {
           this.x = event.clientX / divideNumber;
           this.y = event.clientY / divideNumber;
-        }
+        },
+        // templateでイベント修飾子を記述することで、以下コメントアウトの記述が不要になる
+
+        // noEvent: function(event) {
+        //   // stopPropagation:イベントの伝播を止めるメソッド
+        //   event.stopPropagation()
+        // }
       }
     })
   </script>
 </body>
 </html>
+
+イベント修飾子
