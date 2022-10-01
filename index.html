@@ -10,20 +10,15 @@
   <script src="vue.js"></script>
 
   <div id="app">
-    <p v-once>{{ message }}</p>
-    <p>{{ sayHi() }}</p>
+    <div>{{ html }}</div>
+    <div v-html="html"></div>
+
   </div>
   <script>
     new Vue({
       el: '#app',
       data: {
-        message: 'HelloWorld!',
-      },
-      methods: {
-        sayHi() {
-          this.message = 'Hello VueJS'
-          return 'Hi'
-        }
+        html: '<h1>h1です<h1>'
       }
     })
   </script>
