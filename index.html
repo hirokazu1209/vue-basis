@@ -10,18 +10,18 @@
   <script src="vue.js"></script>
 
   <div id="app">
-    <p>{{message}}</p>
-    <button v-on:click="reversMessage">メッセージ反転</button>
+    <a :[attribute]="url">Google</a>
+    <a v-bind="twitterObject">Twitter</a>
   </div>
   <script>
     new Vue({
       el: '#app',
       data: {
-        message: 'HelloWorld!'
-      },
-      methods: {
-        reversMessage: function() {
-          this.message = this.message.split('').reverse().join('')
+        url: 'https://google.com',
+        attribute: 'href',
+        twitterObject: {
+          href: 'https://twitter.com',
+          id: 31
         }
       }
     })
