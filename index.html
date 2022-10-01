@@ -10,7 +10,9 @@
   <script src="vue.js"></script>
 
   <div id="app">
-    <p>{{ sayHi() }}</p>
+    <p>{{ message }}</p>
+    <!-- 上記テンプレートと同等の書き方 -->
+    <p v-text="message"></p>
   </div>
   <script>
     new Vue({
@@ -18,11 +20,6 @@
       data: {
         message: 'HelloWorld!',
       },
-      methods: {
-        sayHi: function() {
-          return this.message;
-        }
-      }
     })
   </script>
 </body>
