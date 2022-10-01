@@ -10,26 +10,37 @@
   <script src="vue.js"></script>
 
   <div id="app">
-    <p>現在{{ number }}回クリックされています</p>
-    <!-- 動的なイベントを書く方法、@でv-onの記述を省略できる -->
-    <button @[event]="countUp">カウントアップ</button>
-
+    <p>{{ counter }}</p>
+    <button @click="counter += 1">+1</button>
+    <p>{{ otherCounter }}</p>
+    <button @click="otherCounter += 1">別の+1</button>
+    <p>{{ lessThanThreeComputed }}</p>
+    <p>{{ lessThanThreeMethod() }}</p>
   </div>
   <script>
     new Vue({
       el: '#app',
       data: {
-        number: 0,
-        event: 'click'
+        counter: 0,
+        otherCounter: 0
+      },
+      computed: {
+        lessThanThreeComputed: function() {
+          return this.counter > 3 ? '3より上' : '3以下'
+        }
       },
       methods: {
-        countUp: function() {
-          this.number += 1
-        },
+        lessThanThreeMethod: function() {
+          return this.counter > 3 ? '3より上' : '3以下'
+        }
       }
     })
   </script>
 </body>
 </html>
 
-イベント修飾子
+<!-- computedの場合、依存関係がキャッシュされる
+いつ関数が実行されているか？
+{{ }}の中にメソッドを記述すると、再描画される度に実行されてしまう
+そのため、computedで処理を記述した時に{{ }}を使用する
+コードが大量になった時に不要なmethodsも発火してしまう -->
